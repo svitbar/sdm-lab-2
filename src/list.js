@@ -62,12 +62,29 @@ class MyList {
     return res;
   }
 
-  clone() {}
-  reverse() {}
-  findFirst(element) {}
-  findLast(element) {}
-  clear() {}
-  extend(list) {}
+  clone() {
+    return Array.from(this.items);
+  }
+
+  reverse() {
+    this.items.reverse();
+  }
+
+  findFirst(el) {
+    return this.items.indexOf(el);
+  }
+
+  findLast(el) {
+    return this.items.lastIndexOf(el);
+  }
+
+  clear() {
+    this.items.length = 0;
+  }
+
+  extend(list) {
+    this.items = this.items.concat(list.items);
+  }
 }
 
 module.exports = MyList;
