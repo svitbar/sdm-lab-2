@@ -1,3 +1,5 @@
+const check = require('./arg.js');
+
 class MyList {
   constructor() {
     this.items = [];
@@ -8,39 +10,23 @@ class MyList {
   }
 
   append(el) {
-    if (typeof el !== 'string' || el.length !== 1) {
-      throw new Error('Element must be a string of length 1');
-    } else if (!RegExp(/^\p{L}/, 'u').test(el)) {
-      throw new Error('Element must be a char');
-    } else this.items.push(el);
+    check.checkElement(el);
+
+    this.items.push(el);
   }
 
   insert(el, index) {
-    const err = 'Index must be in the range from 0 to ';
+    check.checkElement(el);
+    check.checkIndex(index, this.items);
 
-    if (typeof el !== 'string' || el.length !== 1) {
-      throw new Error('Element must be a string of length 1');
-    } else if (!RegExp(/^\p{L}/, 'u').test(el)) {
-      throw new Error('Element must be a char');
-    } else if (typeof index !== 'number') {
-      throw new Error('Index must be a number');
-    } else if (index < 0 || index >= this.items.length) {
-      throw new Error(err + `${this.items.length - 1}`);
-    } else this.items.splice(index, 0, el);
+    this.items.splice(index, 0, el);
   }
 
   delete(index) {
-    const err = `Index must be in the range from 0 to ${this.items.length - 1}`;
-    let res;
+    check.checkIndex(index, this.items);
 
-    if (typeof index !== 'number') {
-      throw new Error('Index must be a number');
-    } else if (index < 0 || index >= this.items.length) {
-      throw new Error(err);
-    } else {
-      res = this.items[index];
-      this.items.splice(index, 1);
-    }
+    const res = this.items[index];
+    this.items.splice(index, 1);
 
     return res;
   }
@@ -50,16 +36,9 @@ class MyList {
   }
 
   get(index) {
-    const err = `Index must be in the range from 0 to ${this.items.length - 1}`;
-    let res;
+    check.checkIndex(index, this.items);
 
-    if (typeof index !== 'number') {
-      throw new Error('Index must be a number');
-    } else if (index < 0 || index >= this.items.length) {
-      throw new Error(err);
-    } else res = this.items[index];
-
-    return res;
+    return this.items[index];
   }
 
   clone() {
