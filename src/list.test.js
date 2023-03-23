@@ -181,9 +181,13 @@ describe('MyList:', () => {
   });
 
   describe('Extend:', () => {
-    myList.items = ['a', 'b'];
-    const myList2 = new MyList();
-    myList2.items = ['c', 'd'];
+    let myList2;
+
+    beforeEach(() => {
+      myList.items = ['a', 'b'];
+      myList2 = new MyList();
+      myList2.items = ['c', 'd'];
+    });
 
     it('should add all elements from one list to another', () => {
       myList.extend(myList2);
@@ -191,6 +195,7 @@ describe('MyList:', () => {
     });
 
     it('should not change first list when added list was modified', () => {
+      myList.extend(myList2);
       myList2.append('e');
       expect(myList.items).toEqual(['a', 'b', 'c', 'd']);
     });
