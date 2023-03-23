@@ -8,7 +8,7 @@ class MyList {
   }
 
   append(el) {
-    if (typeof el !== 'string' && el.length !== 1) {
+    if (typeof el !== 'string' || el.length !== 1) {
       throw new Error('Element must be a string of length 1');
     } else if (!RegExp(/^\p{L}/, 'u').test(el)) {
       throw new Error('Element must be a char');
@@ -18,7 +18,7 @@ class MyList {
   insert(el, index) {
     const err = 'Index must be in the range from 0 to ';
 
-    if (typeof el !== 'string' && el.length !== 1) {
+    if (typeof el !== 'string' || el.length !== 1) {
       throw new Error('Element must be a string of length 1');
     } else if (!RegExp(/^\p{L}/, 'u').test(el)) {
       throw new Error('Element must be a char');
