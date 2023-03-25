@@ -6,11 +6,11 @@ const checkElement = (el) => {
   }
 };
 
-const checkIndex = (index, arr) => {
+const checkIndex = (index, size) => {
   if (typeof index !== 'number') {
     throw new Error('Index must be a number');
-  } else if (index < 0 || index >= arr.length) {
-    throw new Error(`Index must be in the range from 0 to ${arr.length - 1}`);
+  } else if (index < 0 || index >= size) {
+    throw new Error(`Index must be in the range from 0 to ${size - 1}`);
   }
 };
 
