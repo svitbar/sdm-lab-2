@@ -31,4 +31,4 @@ You can find commit commit with failed test [here](https://github.com/svitbar/sd
 
 ## Conclusion
 
-Unit testing is a great way to determine if your code works as intended. It helped me a lot to check if all functions work as they should. Unit tests were especially useful when I rewrote the code for the second implementation
+Unit testing is a great way to determine if your code works as intended. It helped me a lot to check if all functions work as they should. Unit tests were especially useful when I rewrote the code for the second implementation.
