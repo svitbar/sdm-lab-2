@@ -72,15 +72,22 @@ class MyList {
 
   print() {
     if (!this.head) {
-      return;
+      return '';
     }
 
     let current = this.head;
+    let str = `${current.value}`;
 
-    do {
-      console.log(current.value);
-      current = current.next;
-    } while (current !== this.head);
+
+    if (current.next !== this.head) {
+      while (current.next !== this.head) {
+        current = current.next;
+        str += `, ${current.value}`;
+      }
+    }
+
+    console.log(str);
+    return str;
   }
 
   delete(index) {
@@ -112,7 +119,7 @@ class MyList {
 
     this.size--;
 
-    return res;
+    return res.value;
   }
 
   deleteAll(el) {
@@ -190,14 +197,15 @@ class MyList {
   }
 
   findLast(el) {
-    this.reverse();
+    const rev = this.clone();
+    rev.reverse();
 
-    let current = this.head;
+    let current = rev.head;
     let count = 0;
 
-    while (count !== this.size) {
+    while (count !== rev.size) {
       if (current.value === el) {
-        return this.size - 1 - count;
+        return rev.size - 1 - count;
       } else {
         current = current.next;
         count++;
@@ -208,6 +216,7 @@ class MyList {
 
   clear() {
     this.head = null;
+    this.size = 0;
   }
 
   extend(list) {
